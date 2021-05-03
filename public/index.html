@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+<head>
+    <title>Logicalis</title>
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="screen" />
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <script type="text/javascript" src="js/configInfo.js"></script>
+    <script type="text/javascript" src="js/jabberwerx.ui.js"></script>
+    <script type="text/javascript" src="js/jabberwerx.cisco.js"></script>
+    <script src="js/ciscobase.js"></script>
+    <script type="text/javascript" src="js/cwic-debug.js"></script>
+    <script type="text/javascript" src="js/examples/ExternalWindowExample.js"></script>
+    <script type="text/javascript" src="js/examples/VideoWindowExample.js"></script>
+    <script type="text/javascript" src="js/examples/MediaDeviceExample.js"></script>
+    <script type="text/javascript" src="js/examples/RingtoneExample.js"></script>
+    <script type="text/javascript" src="js/examples/MonitorSelectionAndHighlight.js"></script>
+    <script type="text/javascript" src="js/examples/TelephonyDeviceExample.js"></script>
+    <script type="text/javascript" src="js/examples/TelephonyConversationExample.js"></script>
+    <script type="text/javascript" src="js/examples/LoginControllerExample.js"></script>
+    <script type="text/javascript" src="js/examples/CallPickupNotificationExample.js"></script>
+    <script type="text/javascript" src="js/examples/InvalidCertificateExample.js"></script>
+    <script type="text/javascript" src="js/sample.js"></script>
+    <script type="text/javascript" src="js/angular.min.js"></script>
+    <script type="text/javascript" src="js/contact.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+</head>
+
+<body ng-controller="macroController" id="element">
+
+    <!-- CHARGING PART-->
+     <div class="charginPageParent align-self-center" id="loadingImg">
+        <div class="charginPageChild">
+            <img src="img/logicalis-logo.png" alt="" class="img-fluid">
+            <img src="img/loading.gif" alt=""> 
+        </div>     
+     </div>
+
+
+     <div id="contactList" style="display: none"><!-- -->
+        <div id="doc_wrapper"> 
+            <img src="img/selectaprivadoimage.JPG" alt="" class="full-img" ng-click="doCall()" data-toggle="modal" data-target="#myModal"
+            data-controls-modal="myModal" data-backdrop="static" data-keyboard="false" ng-cloak>
+          
+            <!-- CALL POPUP SPACE-->      
+                <!-- The Modal -->
+                <div class="modal" id="myModal">
+                    <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <!-- Modal body -->
+                        <div class="modal-body text-center">
+                                <div id="callcontainer" class="CallWindow">
+                                    
+                                    <div class="Body">
+                                        <div class="SelectedCall">
+                                            <div id="videocontainer" class="VideoContainer">
+                                                <div id="remotevideocontainer" class="RemoteVideo">
+                                                    <div id="selfviewVideoContainer" class="SelfviewVideo TopLeftPosition"></div>
+                                                </div>
+                                            </div>
+
+                                            <div id="noVideoContainer" class="noVideoContainer">
+                                                <img src="img/callIcon.png" alt="">
+                                            </div>
+
+                                            <div class="textoCalling">
+                                                <p class="" id="callStatus">Llamando</p>
+                                                <p class="callingTo">{{personCalling}}</p>
+                                            </div>
+                                            <div class="Controls">
+                                                <div class="CallControlStrip">
+                                                    <div>
+                                                        <button type="button" id="endCallButton" disabled="true" data-dismiss="modal">
+                                                            <img src="img/endcall.png"><br>
+                                                            <p class="endCallText">Finalizar Llamada</p>                                                             
+                                                        </button>
+                                                    </div>                      
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                            
+                                    <div id="desktopShareWindow" class="DesktopShareWindow" style="display:none;">
+                                        <div class="Title"> Screen Share Window </div>
+                                        <div id="desktopShareWindowContainer" class="Container">
+                                            <div  id="desktopShareContainer" class="Video"> </div>
+                                        </div>
+                                        <div class="Controls">
+                                            <div id="desktopShareButtonsStrip" class="ButtonStrip">
+                                                <input type="button" disabled="true" id="openDesktopShareWindowButton" class="externalbtns"  value="Open">
+                                                <input type="button" disabled="true" id="closeDesktopShareWindowButton" class="externalbtns"  value="Close">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                
+                        <!-- Modal footer 
+                        <div class="modal-footer">
+                         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>-->
+                
+                    </div>
+                    </div>
+                </div>
+                <!-- END CALL POPUP SPACE-->  
+            
+        </div>
+
+        <!--ADICIONAL NO BORRAR -->
+        
+        <div class="alignright" style="display: none">
+            <div id="devicedetails" class="SignInWindow">
+                <h3>Device selection</h3>
+                <div id="deviceselectioncontainer">
+                    <div>
+                        <label for="devices">Device:</label>
+                        <select id="devices"></select>
+                    </div>
+                    <div>
+                        <label for="deviceControlMode">Control Mode:</label>
+                        <span id="deviceControlMode"></span>
+                    </div>
+                    <div id="softphoneControls">
+                    </div>
+                    <div id="deskphoneControls">
+                        <label for="deskphoneLines" class="DeviceSelection">Lines:</label>
+                        <select id="deskphoneLines" class="DeviceSelection"></select>
+                        <button id="selectLineButton" class="DeviceSelection">Change Line</button>
+                    </div>
+
+                    <div id="remotePhoneControls">
+                        <input type="text" id="remotePhoneNumberTextField" class="DeviceSelection" placeholder="Enter Remote Number">
+                        <button id="deleteRemotePhoneNumberButton" class="DeviceSelection">Remove Number</button>
+                    </div>
+
+                    <button id="connectbtn"  type="button" disabled>Connect</button>
+                </div>
+                <label for="sdforcereg">Force Registration:</label>
+                <input type="checkbox" id="sdforcereg" value="true">
+            </div>
+        </div>
+
+
+        <div id="footer">
+            
+        </div>
+</body>
+
+</html>

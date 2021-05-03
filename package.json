@@ -1,0 +1,16 @@
+{
+  "name": "jabber-web-sample",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node ../totem-logicalis-jabber/node_modules/http-server/bin/http-server -c-1 -p 4000",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "dstaudt@cisco.com",
+  "license": "MIT",
+  "dependencies": {
+    "forever": "^0.15.3",
+    "http-server": "^0.12.3"
+  }
+}
