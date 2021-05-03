@@ -29,7 +29,7 @@ This is a [Visual Studio Code](https://code.visualstudio.com/) based project (th
     ```
 
 4. Browse to url shown and you will see this page:
-![alt text](https://github.com/LogicalisAr/Totem-LogicalisJabber/blob/master/public/img/selectaprivadoimage.JPG?raw=true)
+![alt text](https://github.com/LogicalisAr/Totem-LogicalisJabber/blob/main/public/img/selectaprivadoimage.JPG?raw=true)
 
 Communication between CiscoWebCommunicatorAddon and the application is not
 supported when running application from file system. Application can be hosted on localhost.
